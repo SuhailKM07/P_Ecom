@@ -54,6 +54,10 @@
 		<string>RedHatDisplay-Medium.ttf</string>
 		<string>RedHatDisplay-Regular.ttf</string>
 		<string>RedHatDisplay-SemiBold.ttf</string>
+		<string>ProductSans-Bold.ttf</string>
+		<string>ProductSans-Light.ttf</string>
+		<string>ProductSans-Medium.ttf</string>
+		<string>ProductSans-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

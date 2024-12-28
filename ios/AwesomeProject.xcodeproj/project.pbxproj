@@ -19,6 +19,10 @@
 		4C1E12DAC45A4686BFB595B1 /* RedHatDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A295E8806214B2FBD29CA94 /* RedHatDisplay-Medium.ttf */; };
 		4DA3B4296CF64B658FFBF021 /* RedHatDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 715CF9A1436D475EBD45E642 /* RedHatDisplay-Regular.ttf */; };
 		C959580155D945218BFD53D4 /* RedHatDisplay-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2A3D7F2E04547DEB9379B37 /* RedHatDisplay-SemiBold.ttf */; };
+		52823B034BCE4F158E156740 /* ProductSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B9086272D86427DB77D7BD2 /* ProductSans-Bold.ttf */; };
+		A7E9E10CA84341D5A177C77B /* ProductSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 929B5D7BA10A45CD9AA29397 /* ProductSans-Light.ttf */; };
+		090EE8B6B6974657868E3387 /* ProductSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D37C5C87004942EE900CD45F /* ProductSans-Medium.ttf */; };
+		C83DEBD3B5464E3E90718402 /* ProductSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 761EF8906D08451287F8BBC0 /* ProductSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		0A295E8806214B2FBD29CA94 /* RedHatDisplay-Medium.ttf */ = {isa = PBXFileReference; name = "RedHatDisplay-Medium.ttf"; path = "../src/assets/fonts/RedHatDisplay-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		715CF9A1436D475EBD45E642 /* RedHatDisplay-Regular.ttf */ = {isa = PBXFileReference; name = "RedHatDisplay-Regular.ttf"; path = "../src/assets/fonts/RedHatDisplay-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C2A3D7F2E04547DEB9379B37 /* RedHatDisplay-SemiBold.ttf */ = {isa = PBXFileReference; name = "RedHatDisplay-SemiBold.ttf"; path = "../src/assets/fonts/RedHatDisplay-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5B9086272D86427DB77D7BD2 /* ProductSans-Bold.ttf */ = {isa = PBXFileReference; name = "ProductSans-Bold.ttf"; path = "../src/assets/fonts/ProductSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		929B5D7BA10A45CD9AA29397 /* ProductSans-Light.ttf */ = {isa = PBXFileReference; name = "ProductSans-Light.ttf"; path = "../src/assets/fonts/ProductSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D37C5C87004942EE900CD45F /* ProductSans-Medium.ttf */ = {isa = PBXFileReference; name = "ProductSans-Medium.ttf"; path = "../src/assets/fonts/ProductSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		761EF8906D08451287F8BBC0 /* ProductSans-Regular.ttf */ = {isa = PBXFileReference; name = "ProductSans-Regular.ttf"; path = "../src/assets/fonts/ProductSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +177,10 @@
 				0A295E8806214B2FBD29CA94 /* RedHatDisplay-Medium.ttf */,
 				715CF9A1436D475EBD45E642 /* RedHatDisplay-Regular.ttf */,
 				C2A3D7F2E04547DEB9379B37 /* RedHatDisplay-SemiBold.ttf */,
+				5B9086272D86427DB77D7BD2 /* ProductSans-Bold.ttf */,
+				929B5D7BA10A45CD9AA29397 /* ProductSans-Light.ttf */,
+				D37C5C87004942EE900CD45F /* ProductSans-Medium.ttf */,
+				761EF8906D08451287F8BBC0 /* ProductSans-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -274,6 +286,10 @@
 				4C1E12DAC45A4686BFB595B1 /* RedHatDisplay-Medium.ttf in Resources */,
 				4DA3B4296CF64B658FFBF021 /* RedHatDisplay-Regular.ttf in Resources */,
 				C959580155D945218BFD53D4 /* RedHatDisplay-SemiBold.ttf in Resources */,
+				52823B034BCE4F158E156740 /* ProductSans-Bold.ttf in Resources */,
+				A7E9E10CA84341D5A177C77B /* ProductSans-Light.ttf in Resources */,
+				090EE8B6B6974657868E3387 /* ProductSans-Medium.ttf in Resources */,
+				C83DEBD3B5464E3E90718402 /* ProductSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
