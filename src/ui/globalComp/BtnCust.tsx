@@ -19,7 +19,7 @@ export default function BtnCust({
   onPushFun,
 }: ButtonCompProps) {
   return (
-    <TouchableOpacity style={[{ flexDirection: 'row', alignItems: 'center' }, buttonStyle]} onPress={onPushFun}>
+    <TouchableOpacity style={buttonStyle} onPress={onPushFun}>
       {prefixIcon && <View style={{ marginRight: 8 }}>{prefixIcon}</View>}
       <Text style={buttonTextStyle}>{buttonContent}</Text>
       {surfixIcon && <View style={{ marginLeft: 8 }}>{surfixIcon}</View>}

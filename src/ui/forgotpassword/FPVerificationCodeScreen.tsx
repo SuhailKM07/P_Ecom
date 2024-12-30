@@ -1,98 +1,107 @@
 import {
-    Pressable,
-    StatusBar,
-    StyleSheet,
-    Text,
-    View,
-    ScrollView,
-    TextInput,
-  } from 'react-native';
-  import React, { useState, useRef } from 'react';
-  import { Icon } from 'react-native-basic-elements';
-  import { screenHeight, screenWidth } from '../Dimensions/dimensionsfile';
-  
-  export default function FPVerificationCodeScreen() {
-    const [otp, setOtp] = useState(['', '', '', '']);
-    const inputRefs = useRef<Array<TextInput | null>>([]);
-  
-    const handleInputChange = (text: string, index: number) => {
-      if (/^\d$/.test(text)) {
-        const updatedOtp = [...otp];
-        updatedOtp[index] = text;
-        setOtp(updatedOtp);
-  
-        if (index < otp.length - 1) {
-          inputRefs.current[index + 1]?.focus(); 
-        }
-      } else if (text === '') {
-        const updatedOtp = [...otp];
-        updatedOtp[index] = '';
-        setOtp(updatedOtp);
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { Icon } from 'react-native-basic-elements';
+import { screenHeight, screenWidth } from '../Dimensions/dimensionsfile';
+
+export default function FPVerificationCodeScreen() {
+  const [otp, setOtp] = useState(['', '', '', '']);
+  const inputRefs = useRef<Array<TextInput | null>>([]);
+
+  const handleInputChange = (text: string, index: number) => {
+    if (/^\d$/.test(text)) {
+      const updatedOtp = [...otp];
+      updatedOtp[index] = text;
+      setOtp(updatedOtp);
+
+      if (index < otp.length - 1) {
+        inputRefs.current[index + 1]?.focus();
       }
-    };
-  
-    const handleKeyPress = (key: string, index: number) => {
-      if (key === 'Backspace' && otp[index] === '' && index > 0) {
-        inputRefs.current[index - 1]?.focus();
-      }
-    };
-  
-    const handleSubmit = () => {
-      const code = otp.join('');
-      if (code.length === otp.length) {
-        console.log('OTP Submitted:', code);
-        // Call your API or verification logic here
-      }
-    };
-  
-    return (
-      <ScrollView>
+    } else if (text === '') {
+      const updatedOtp = [...otp];
+      updatedOtp[index] = '';
+      setOtp(updatedOtp);
+    }
+  };
+
+  const handleKeyPress = (key: string, index: number) => {
+    if (key === 'Backspace' && otp[index] === '' && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handleSubmit = () => {
+    const code = otp.join('');
+    if (code.length === otp.length) {
+      console.log('OTP Submitted:', code);
+      // Call your API or verification logic here
+    }
+  };
+
+  return (
+    <ScrollView>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          paddingHorizontal: screenWidth * 5,
+          paddingVertical: screenHeight * 3,
+        }}
+      >
+        <StatusBar
+          translucent
+          backgroundColor="rgba(255, 255, 255, 0)"
+          barStyle={'dark-content'}
+        />
         <View
           style={{
-            flex: 1,
-            alignItems: 'center',
-            paddingHorizontal: screenWidth * 5,
-            paddingVertical: screenHeight * 3,
+            justifyContent: 'space-evenly',
+            height: screenHeight * 50,
+            // backgroundColor : 'gray'
           }}
         >
-          <StatusBar
-            translucent
-            backgroundColor="rgba(255, 255, 255, 0)"
-            barStyle={'dark-content'}
-          />
-          <View
+          <Pressable
             style={{
-              justifyContent: 'space-evenly',
-              height: screenHeight * 50,
+              backgroundColor: 'white',
+              width: screenWidth * 8,
+              height: screenWidth * 8,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 50,
+              elevation: 2,
             }}
           >
-            <Pressable
+            <Icon
+              name="chevron-left"
+              type="Octicons"
+              color={'#1e3354'}
+              size={screenWidth * 5}
               style={{
-                backgroundColor: 'white',
-                width: screenWidth * 8,
-                height: screenWidth * 8,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 50,
-                elevation: 2,
+                width: screenWidth * 2,
               }}
-            >
-              <Icon
-                name="chevron-left"
-                type="Octicons"
-                color={'#1e3354'}
-                size={screenWidth * 5}
-                style={{
-                  width: screenWidth * 2,
-                }}
-              />
-            </Pressable>
-  
+            />
+          </Pressable>
+
+          <View
+          style = {{
+            height : screenHeight * 30,
+            justifyContent : 'space-around',
+            // backgroundColor : 'green'
+          }}
+          >
             <View
               style={{
-                gap: screenHeight * 3,
-                height: screenHeight * 20,
-                paddingTop: screenHeight * 2,
+                gap: screenHeight * 2,
+                height: screenHeight * 18,
+                // backgroundColor: 'red',
+                paddingTop: screenHeight * 3,
               }}
             >
               <Text
@@ -100,7 +109,7 @@ import {
                   fontFamily: 'RedHatDisplay-Bold',
                   fontSize: screenWidth * 5,
                 }}
-              >
+                >
                 Verification code
               </Text>
               <Text
@@ -108,16 +117,17 @@ import {
                   fontFamily: 'RedHatDisplay-Light',
                   fontSize: screenWidth * 3.5,
                 }}
-              >
+                >
                 Please enter the verification code we sent to your email address.
               </Text>
             </View>
-  
+
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'space-evenly',
+                justifyContent : 'center',
+                gap : screenWidth * 3
               }}
             >
               {otp.map((value, index) => (
@@ -135,25 +145,27 @@ import {
                 />
               ))}
             </View>
-  
-            <View
+          </View>
+
+          <View
+            style={{
+              height: screenHeight * 10,
+              justifyContent: 'center',
+              // backgroundColor : 'red'
+            }}
+          >
+            <Text
               style={{
-                height: screenHeight * 10,
-                justifyContent: 'center',
+                fontFamily: 'RedHatDisplay-Light',
+                fontSize: screenWidth * 3,
+                color: '#88898f',
               }}
             >
-              <Text
-                style={{
-                  fontFamily: 'RedHatDisplay-Light',
-                  fontSize: screenWidth * 3,
-                  color: '#88898f',
-                }}
-              >
-                Resend in 00:10
-              </Text>
-            </View>
-  
-            {/* <Pressable
+              Resend in 00:10
+            </Text>
+          </View>
+
+          {/* <Pressable
               onPress={handleSubmit}
               style={{
                 marginTop: screenHeight * 2,
@@ -173,21 +185,20 @@ import {
                 Verify
               </Text>
             </Pressable> */}
-          </View>
         </View>
-      </ScrollView>
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    verificationInpStyle: {
-      borderColor: '#a5a7ac',
-      borderWidth: 1.5,
-      width: screenWidth * 15,
-      height: screenWidth * 15,
-      borderRadius: 50,
-      textAlign: 'center',
-      fontSize: screenWidth * 5,
-    },
-  });
-  
+      </View>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  verificationInpStyle: {
+    borderColor: '#a5a7ac',
+    borderWidth: 1.5,
+    width: screenWidth * 13,
+    height: screenWidth * 13,
+    borderRadius: 50,
+    textAlign: 'center',
+    fontSize: screenWidth * 5,
+  },
+});

@@ -5,6 +5,8 @@ import SignUpScreen from './src/ui/signup/SignUpScreen'
 import LogInScreen from './src/ui/login/LogInScreen'
 import FPEmailScreen from './src/ui/forgotpassword/FPEmailScreen'
 import FPVerificationCodeScreen from './src/ui/forgotpassword/FPVerificationCodeScreen'
+import CreateNewPass from './src/ui/forgotpassword/CreateNewPass'
+import BTMSheet from './src/ui/forgotpassword/BTMSheet'
 
 export default function App() {
   return (
@@ -12,7 +14,9 @@ export default function App() {
     // <SignUpScreen />
     // <LogInScreen />
     // <FPEmailScreen />
-    <FPVerificationCodeScreen />
+    // <FPVerificationCodeScreen />
+    <CreateNewPass/>
+    // <BTMSheet />
   )
 }
 

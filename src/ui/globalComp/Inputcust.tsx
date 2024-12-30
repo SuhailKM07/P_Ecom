@@ -6,8 +6,10 @@ import {
     TextStyle,
     View,
     StyleProp,
-    ViewStyle
+    ViewStyle,
+    Text
 } from 'react-native';
+
 
 interface InputcustTypeCheck {
     inputStyle?: StyleProp<TextStyle>;
@@ -19,6 +21,7 @@ interface InputcustTypeCheck {
     prefixIcon?: ReactNode;
     surfixIcon?: ReactNode;
     containerStyle?: StyleProp<ViewStyle>;
+    secureTextEntry?: boolean
 }
 
 export default function Inputcust({
@@ -30,19 +33,26 @@ export default function Inputcust({
     value,
     prefixIcon,
     surfixIcon,
-    containerStyle
+    containerStyle,
+    secureTextEntry
 }: InputcustTypeCheck) {
     return (
         <View style={[styles.container, containerStyle]}>
             {prefixIcon && <View style={{ marginRight: 8 }}>{prefixIcon}</View>}
+
             <TextInput
-                style={[inputStyle]}
+                style={inputStyle}
                 onChangeText={onChangeFun}
                 value={value}
                 placeholder={placeholder}
                 placeholderTextColor={placeholderColor}
                 keyboardType={keyboardType}
+                secureTextEntry={secureTextEntry}
+                maxLength={30}
             />
+
+
+
             {surfixIcon && <View style={{ marginLeft: 8 }}>{surfixIcon}</View>}
         </View>
     );
