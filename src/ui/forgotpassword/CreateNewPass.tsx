@@ -69,11 +69,13 @@ export default function CreateNewPass() {
                             <Inputcust
                                 inputStyle={[
                                     styles.inputStyle,
-                                    isNewPasswordVisible && {
+                                    (!isNewPasswordVisible && newPassword.length > 0) ? {
                                         fontSize: screenWidth * 4,
                                         fontWeight: '700',
                                         letterSpacing: 3,
-                                    },
+                                    } : {
+                                        fontSize: screenWidth * 4,
+                                    }
                                 ]}
                                 onChangeFun={onChangeNewPassword}
                                 placeholder="New Password"
@@ -105,10 +107,12 @@ export default function CreateNewPass() {
                             <Inputcust
                                 inputStyle={[
                                     styles.inputStyle,
-                                    isConfPasswordVisible && {
+                                    (!isConfPasswordVisible && conPassword.length > 0) ? {
                                         fontSize: screenWidth * 4,
                                         fontWeight: '700',
                                         letterSpacing: 3,
+                                    } : {
+                                        fontSize: screenWidth * 4,
                                     },
                                 ]}
                                 onChangeFun={onChangeConPassword}
@@ -145,7 +149,7 @@ export default function CreateNewPass() {
                             buttonContent="Confirm"
                             buttonStyle={{
                                 height: screenHeight * 6,
-                                width: screenWidth * 30,
+                                width: screenWidth * 35,
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 borderRadius: 25,
@@ -172,9 +176,13 @@ export default function CreateNewPass() {
                             height: screenHeight * 45,
                         },
                         draggableIcon: {
-                            backgroundColor: 'red',
+                            backgroundColor: '#8c8e93',
                         },
                     }}
+                    dragOnContent={true}
+                    draggable={true}
+                    closeDuration={0}
+                    
                 >
                     <View style={styles.bottomSheetContent}>
                         <View style={styles.successIconContainer}>

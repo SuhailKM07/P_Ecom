@@ -4,7 +4,7 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 
 export default function BTMSheet() {
-  const refRBSheet = useRef();
+  const refRBSheet = useRef<any>();
 
   // Handler for gesture detection
   const handleGesture: (event: any) => any = (event) => {
@@ -32,11 +32,10 @@ export default function BTMSheet() {
       {/* Bottom Sheet */}
       <RBSheet
         ref={refRBSheet}
-        closeOnDragDown={true}
-        closeOnPressMask={true} // Close when tapping outside the sheet
+        closeOnPressMask={true}
         customStyles={{
           wrapper: {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
           },
           container: {
             borderTopLeftRadius: 15,

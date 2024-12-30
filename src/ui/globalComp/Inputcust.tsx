@@ -39,7 +39,6 @@ export default function Inputcust({
     return (
         <View style={[styles.container, containerStyle]}>
             {prefixIcon && <View style={{ marginRight: 8 }}>{prefixIcon}</View>}
-
             <TextInput
                 style={inputStyle}
                 onChangeText={onChangeFun}
@@ -50,9 +49,6 @@ export default function Inputcust({
                 secureTextEntry={secureTextEntry}
                 maxLength={30}
             />
-
-
-
             {surfixIcon && <View style={{ marginLeft: 8 }}>{surfixIcon}</View>}
         </View>
     );
