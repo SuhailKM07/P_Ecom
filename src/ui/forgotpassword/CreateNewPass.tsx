@@ -20,10 +20,10 @@ export default function CreateNewPass() {
     const [isNewPasswordVisible, setNewPasswordVisible] = useState(false);
     const [isConfPasswordVisible, setConfPasswordVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const refRBSheet = useRef();
+    const refRBSheet = useRef<any>(null);
 
     const handleGesture = () => {
-        refRBSheet?.current?.open();
+        refRBSheet.current?.open();
     };
 
     const handleConfirm = () => {
@@ -152,7 +152,7 @@ export default function CreateNewPass() {
                                 backgroundColor: isButtonEnabled ? '#000000' : '#b9b9b9',
                             }}
                             buttonTextStyle={styles.buttonText}
-                            onPushFun={isButtonEnabled ? handleConfirm : () => {}}
+                            onPushFun={isButtonEnabled ? handleConfirm : () => { }}
                         />
                     </View>
                 </View>
@@ -160,7 +160,6 @@ export default function CreateNewPass() {
                 {/* Bottom Sheet */}
                 <RBSheet
                     ref={refRBSheet}
-                    closeOnDragDown={true}
                     closeOnPressMask={true}
                     customStyles={{
                         wrapper: {
