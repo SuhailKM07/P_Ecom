@@ -7,7 +7,6 @@ import {
     View,
     StyleProp,
     ViewStyle,
-    Text
 } from 'react-native';
 
 
@@ -47,7 +46,7 @@ export default function Inputcust({
                 placeholderTextColor={placeholderColor}
                 keyboardType={keyboardType}
                 secureTextEntry={secureTextEntry}
-                maxLength={30}
+                maxLength={20}
             />
             {surfixIcon && <View style={{ marginLeft: 8 }}>{surfixIcon}</View>}
         </View>
@@ -59,17 +58,3 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
 });
-
-
-{/* <TextInput
-style={{
-    borderBottomColor: '#d6d6d6',
-    borderBottomWidth: 1,
-    fontFamily: 'ProductSans-Light'
-}}
-onChangeText={onChangeName}
-value={name}
-placeholder="Enter your name"
-placeholderTextColor={'black'}
-keyboardType="numeric"
-/> */}

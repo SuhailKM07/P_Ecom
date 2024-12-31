@@ -13,8 +13,12 @@ import { screenHeight, screenWidth } from '../Dimensions/dimensionsfile';
 import Inputcust from '../globalComp/Inputcust';
 import BtnCust from '../globalComp/BtnCust';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { navigationTypeChecking } from '../navigation/NavigationTypes';
 
-export default function CreateNewPass() {
+type CreateNewPassProps = NativeStackScreenProps<navigationTypeChecking, 'CreateNewPass'>
+
+const CreateNewPass: React.FC<CreateNewPassProps> = ({ navigation }) => {
     const [newPassword, onChangeNewPassword] = useState('');
     const [conPassword, onChangeConPassword] = useState('');
     const [isNewPasswordVisible, setNewPasswordVisible] = useState(false);
@@ -44,7 +48,12 @@ export default function CreateNewPass() {
                 <StatusBar hidden={true} />
                 <View style={styles.innerContainer}>
                     {/* Back Button */}
-                    <Pressable style={styles.backButton}>
+                    <Pressable
+                        style={styles.backButton}
+                        onPress={() => {
+                            navigation.pop()
+                        }}
+                    >
                         <Icon
                             name="chevron-left"
                             type="Octicons"
@@ -70,7 +79,7 @@ export default function CreateNewPass() {
                                 inputStyle={[
                                     styles.inputStyle,
                                     (!isNewPasswordVisible && newPassword.length > 0) ? {
-                                        fontSize: screenWidth * 4,
+                                        fontSize: screenWidth * 5,
                                         fontWeight: '700',
                                         letterSpacing: 3,
                                     } : {
@@ -88,6 +97,7 @@ export default function CreateNewPass() {
                                 <Pressable
                                     onPress={() => setNewPasswordVisible(!isNewPasswordVisible)}
                                     style={styles.eyeIcon}
+                                    hitSlop={30}
                                 >
                                     <Image
                                         source={
@@ -108,7 +118,7 @@ export default function CreateNewPass() {
                                 inputStyle={[
                                     styles.inputStyle,
                                     (!isConfPasswordVisible && conPassword.length > 0) ? {
-                                        fontSize: screenWidth * 4,
+                                        fontSize: screenWidth * 5,
                                         fontWeight: '700',
                                         letterSpacing: 3,
                                     } : {
@@ -126,6 +136,7 @@ export default function CreateNewPass() {
                                 <Pressable
                                     onPress={() => setConfPasswordVisible(!isConfPasswordVisible)}
                                     style={styles.eyeIcon}
+                                    hitSlop={30}
                                 >
                                     <Image
                                         source={
@@ -173,7 +184,7 @@ export default function CreateNewPass() {
                             borderTopLeftRadius: 40,
                             borderTopRightRadius: 40,
                             paddingHorizontal: 20,
-                            height: screenHeight * 45,
+                            height: screenHeight * 55,
                         },
                         draggableIcon: {
                             backgroundColor: '#8c8e93',
@@ -182,7 +193,7 @@ export default function CreateNewPass() {
                     dragOnContent={true}
                     draggable={true}
                     closeDuration={0}
-                    
+
                 >
                     <View style={styles.bottomSheetContent}>
                         <View style={styles.successIconContainer}>
@@ -191,8 +202,12 @@ export default function CreateNewPass() {
                                 style={styles.successIcon}
                             />
                         </View>
-                        <Text style={styles.successMessage}>Your password has been changed</Text>
-                        <Text style={styles.successSubtitle}>Welcome back! Discover now!</Text>
+                        <View style={{
+                            gap: screenHeight * 1.5
+                        }}>
+                            <Text style={styles.successMessage}>Your password has been changed</Text>
+                            <Text style={styles.successSubtitle}>Welcome back! Discover now!</Text>
+                        </View>
                         <BtnCust
                             buttonContent="Browse home"
                             buttonStyle={styles.successButton}
@@ -202,6 +217,7 @@ export default function CreateNewPass() {
                     </View>
                 </RBSheet>
             </View>
+          
         </ScrollView>
     );
 }
@@ -232,11 +248,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'RedHatDisplay-Bold',
-        fontSize: screenWidth * 5,
+        fontSize: screenWidth * 8,
     },
     subTitle: {
         fontFamily: 'RedHatDisplay-Light',
-        fontSize: screenWidth * 3.5,
+        fontSize: screenWidth * 4.9,
     },
     inputFieldsContainer: {
         gap: screenWidth * 5,
@@ -245,6 +261,9 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         position: 'relative',
+        // alignItems : 'center',
+        justifyContent: 'center',
+        // backgroundColor : 'red'
     },
     label: {
         color: '#A6ABC4',
@@ -260,12 +279,13 @@ const styles = StyleSheet.create({
     eyeIcon: {
         position: 'absolute',
         right: 0,
-        top: 20,
+        top: 27,
     },
     imageStyle: {
         width: screenWidth * 4,
         height: screenWidth * 4,
         resizeMode: 'center',
+        // backgroundColor : 'red'
     },
     errorMessage: {
         color: 'red',
@@ -282,30 +302,33 @@ const styles = StyleSheet.create({
         fontSize: screenWidth * 3.5,
     },
     bottomSheetContent: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        height: screenHeight * 45
     },
     successIconContainer: {
         backgroundColor: '#FAFAFA',
-        width: screenWidth * 20,
-        height: screenWidth * 20,
+        width: screenWidth * 25,
+        height: screenWidth * 25,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 50,
     },
     successIcon: {
-        width: screenWidth * 11,
-        height: screenWidth * 11,
+        width: screenWidth * 15,
+        height: screenWidth * 15,
         resizeMode: 'center',
     },
     successMessage: {
         textAlign: 'center',
-        fontSize: screenWidth * 4,
+        fontSize: screenWidth * 5,
+        color: '#332218',
+        fontFamily: 'RedHatDisplay-Medium'
     },
     successSubtitle: {
         textAlign: 'center',
         color: '#332218',
+        fontFamily: 'RedHatDisplay-Light'
     },
     successButton: {
         height: screenHeight * 7,
@@ -314,5 +337,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 30,
         backgroundColor: '#000000',
+       
     },
 });
+
+
+export default CreateNewPass

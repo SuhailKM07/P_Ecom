@@ -1,10 +1,15 @@
-import { Image, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Image, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { screenHeight, screenWidth } from '../Dimensions/dimensionsfile';
 import Inputcust from '../globalComp/Inputcust';
 import BtnCust from '../globalComp/BtnCust';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { navigationTypeChecking } from '../navigation/NavigationTypes';
 
-export default function SignUpScreen() {
+// Define the props for WelcomeScreen
+type WelcomeScreenProps = NativeStackScreenProps<navigationTypeChecking, 'SignUpScreen'>;
+
+const SignUpScreen: React.FC<WelcomeScreenProps> = ({ navigation }) => {
 
   const [name, onChangeName] = useState('');
   const [email, onChangeEmail] = useState('');
@@ -12,7 +17,14 @@ export default function SignUpScreen() {
   const [conPassword, onChangeConPassword] = useState('');
 
   return (
-    <View style={{ backgroundColor: 'white', paddingHorizontal: screenWidth * 6 , paddingVertical : screenHeight * 5 }}>
+
+    <View style={{
+      backgroundColor: 'white',
+      flex: 1,
+      paddingHorizontal: screenWidth * 7,
+      paddingVertical: screenHeight * 5,
+
+    }}>
 
       <StatusBar
         translucent
@@ -24,11 +36,11 @@ export default function SignUpScreen() {
         height: screenHeight * 18,
         alignItems: 'flex-start',
         justifyContent: 'center',
-        gap: screenHeight * 2,
-        paddingTop : screenHeight * 5
+        gap: screenHeight * 1.5,
+        paddingTop: screenHeight * 5,
       }} >
         <Text style={{
-          fontSize: screenWidth * 5.5,
+          fontSize: screenWidth * 7.4,
           fontFamily: 'RedHatDisplay-Bold',
         }}>
           Create
@@ -36,7 +48,7 @@ export default function SignUpScreen() {
         <Text
           style={{
 
-            fontSize: screenWidth * 5.5,
+            fontSize: screenWidth * 7.4,
             fontFamily: 'RedHatDisplay-Bold',
           }}
         >
@@ -45,7 +57,6 @@ export default function SignUpScreen() {
       </View>
 
       <View style={{
-        // backgroundColor : 'red',
         height: screenHeight * 40,
         justifyContent: 'space-evenly',
       }}>
@@ -55,7 +66,7 @@ export default function SignUpScreen() {
           onChangeFun={onChangeName}
           placeholder="Enter your name"
           placeholderColor={'black'}
-          keyboardType="numeric"
+          keyboardType="default"
           value={name}
         />
 
@@ -65,7 +76,7 @@ export default function SignUpScreen() {
           onChangeFun={onChangeEmail}
           placeholder="Email address"
           placeholderColor={'black'}
-          keyboardType="numeric"
+          keyboardType="email-address"
           value={email}
         />
 
@@ -75,7 +86,7 @@ export default function SignUpScreen() {
           onChangeFun={onChangePassword}
           placeholder="Password"
           placeholderColor={'black'}
-          keyboardType="numeric"
+          keyboardType="default"
           value={password}
         />
 
@@ -85,7 +96,7 @@ export default function SignUpScreen() {
           onChangeFun={onChangeConPassword}
           placeholder="Confirm password"
           placeholderColor={'black'}
-          keyboardType="numeric"
+          keyboardType="default"
           value={conPassword}
         />
 
@@ -95,7 +106,7 @@ export default function SignUpScreen() {
         style={{
           alignItems: 'center',
           justifyContent: 'space-evenly',
-          paddingTop : screenHeight * 2.5
+          paddingTop: screenHeight * 2.5
         }}
       >
 
@@ -104,7 +115,7 @@ export default function SignUpScreen() {
           buttonStyle={{
             backgroundColor: '#2D201C',
             height: screenHeight * 6,
-            width: screenWidth * 30,
+            width: screenWidth * 39,
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 25
@@ -120,7 +131,7 @@ export default function SignUpScreen() {
           style={{
             alignItems: 'center',
             justifyContent: 'space-evenly',
-            height: screenHeight * 25
+            height: screenHeight * 25,
           }}
         >
           <Text
@@ -135,7 +146,7 @@ export default function SignUpScreen() {
           <View
             style={{
               flexDirection: 'row',
-              gap: screenWidth * 3
+              gap: screenWidth * 5
             }}
           >
             <Image
@@ -152,21 +163,25 @@ export default function SignUpScreen() {
             />
 
           </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+          <View style={{ marginTop: screenHeight * 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
             <Text style={{
-              width: screenWidth * 32,
+              width: screenWidth * 42,
               fontFamily: 'RedHatDisplay-Medium',
-              fontSize: screenWidth * 3, 
+              fontSize: screenWidth * 4,
             }}>
               Already have account?
             </Text>
             <Text style={{
-              width: screenWidth * 10, 
+              width: screenWidth * 12,
               textDecorationLine: 'underline',
               fontFamily: 'RedHatDisplay-Medium',
-              fontSize: screenWidth * 3,
-              textDecorationStyle : 'dashed',
-            }}>
+              fontSize: screenWidth * 4,
+              textDecorationStyle: 'dashed',
+            }}
+              onPress={() => {
+                navigation.navigate('LogInScreen')
+              }}
+            >
               Log In
             </Text>
           </View>
@@ -175,6 +190,7 @@ export default function SignUpScreen() {
       </View>
 
     </View>
+
   )
 }
 
@@ -182,10 +198,12 @@ const styles = StyleSheet.create({
   inputStyle: {
     borderBottomColor: '#d6d6d6',
     borderBottomWidth: 1,
-    fontFamily: 'ProductSans-Light'
+    fontFamily: 'ReadHatDisplay-Light'
   },
   imgStyle: {
-    width: screenWidth * 9,
-    height: screenWidth * 9
+    width: screenWidth * 12,
+    height: screenWidth * 12
   }
 })
+
+export default SignUpScreen

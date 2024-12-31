@@ -10,8 +10,14 @@ import {
 import React from 'react';
 import { BlurView } from '@react-native-community/blur';
 import { screenHeight, screenWidth } from '../Dimensions/dimensionsfile';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { navigationTypeChecking } from '../navigation/NavigationTypes';
 
-export default function WelcomeScreen() {
+
+// Define the props for WelcomeScreen
+type WelcomeScreenProps = NativeStackScreenProps<navigationTypeChecking, 'WelcomeScreen'>;
+
+const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ route, navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar
@@ -26,32 +32,32 @@ export default function WelcomeScreen() {
             >
                 <View style={styles.content}>
                     <View
-                    style = {{
-                        // backgroundColor : 'red',
-                        height : screenHeight * 42
-                    }}
+                        style={{
+                            // backgroundColor : 'red',
+                            height: screenHeight * 37
+                        }}
                     >
                         <View
                             style={{
-                                height: screenHeight * 38,
+                                height: screenHeight * 22,
                                 width: screenWidth * 100,
                                 // backgroundColor: 'gray',
                                 alignContent: 'center',
-                                justifyContent: 'space-evenly',
+                                justifyContent: 'space-between',
 
                             }}
                         >
                             <View
-                            style = {{
-                                gap : 15
-                            }}>
+                                style={{
+                                    gap: screenHeight * 1.5
+                                }}>
                                 <Text
                                     style={{
                                         color: 'white',
-                                        fontSize: screenWidth * 5.5,
+                                        fontSize: screenWidth * 7,
                                         textAlign: 'center',
-                                        fontFamily: 'Georama_Condensed-SemiBold',
-                                        fontWeight : 700
+                                        fontFamily: 'RedHatDisplay-Medium',
+                                        fontWeight: 700
                                     }}
                                 >
                                     Welcome to GemStore!
@@ -59,9 +65,9 @@ export default function WelcomeScreen() {
                                 <Text
                                     style={{
                                         color: 'white',
-                                        fontSize: screenWidth * 4,
+                                        fontSize: screenWidth * 4.8,
                                         textAlign: 'center',
-                                        fontFamily: 'Georama_Condensed-Medium',
+                                        fontFamily: 'RedHatDisplay-Medium',
                                     }}
                                 >
                                     The home for a fashionista
@@ -74,31 +80,33 @@ export default function WelcomeScreen() {
                                 }}>
                                 <View
                                     style={{
-                                        width: screenWidth * 40,
-                                        height: screenHeight * 7,
+                                        width: screenWidth * 46,
+                                        height: screenHeight * 6,
                                         borderRadius: 30,
+                 
                                         overflow: 'hidden',
-                                        borderColor : 'white',
-                                        borderWidth : 2,
-                                        alignItems : 'center',
-                                        justifyContent : 'center'
+                                        borderColor: 'white',
+                                        borderWidth: 1,
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
                                     }}
                                 >
                                     <BlurView
                                         style={styles.blurContainer}
                                         blurType="light"
-                                        blurAmount={3}
+                                        blurAmount={5}
                                         reducedTransparencyFallbackColor="gray"
                                     >
                                         <Pressable
                                             style={styles.buttonContainer}
-                                            onPress={() => console.log('Get Started pressed')}
+                                            onPress={() => navigation.navigate('WelcomeCaroselScreen')}
                                         >
                                             <Text
                                                 style={{
                                                     color: 'white',
-                                                    fontSize: screenWidth * 4,
+                                                    fontSize: screenWidth * 3.5,
                                                     textAlign: 'center',
+                                                    fontFamily : 'RedHatDisplay-Medium'
                                                 }}
                                             >
                                                 Get Started
@@ -129,7 +137,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     blurContainer: {
-        width: screenWidth * 40,
+        width: '100%',
         height: screenHeight * 7,
         borderRadius: 10,
         overflow: 'hidden',
@@ -140,3 +148,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+export default WelcomeScreen

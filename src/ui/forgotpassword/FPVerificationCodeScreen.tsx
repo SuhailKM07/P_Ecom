@@ -7,11 +7,15 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Icon } from 'react-native-basic-elements';
 import { screenHeight, screenWidth } from '../Dimensions/dimensionsfile';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { navigationTypeChecking } from '../navigation/NavigationTypes';
 
-export default function FPVerificationCodeScreen() {
+type FPVerificationCodeScreenProps = NativeStackScreenProps<navigationTypeChecking, 'FPVerificationCodeScreen'>
+
+const FPVerificationCodeScreen: React.FC<FPVerificationCodeScreenProps> = ({ navigation }) => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const inputRefs = useRef<Array<TextInput | null>>([]);
 
@@ -20,6 +24,7 @@ export default function FPVerificationCodeScreen() {
       const updatedOtp = [...otp];
       updatedOtp[index] = text;
       setOtp(updatedOtp);
+
 
       if (index < otp.length - 1) {
         inputRefs.current[index + 1]?.focus();
@@ -30,7 +35,6 @@ export default function FPVerificationCodeScreen() {
       setOtp(updatedOtp);
     }
   };
-
   const handleKeyPress = (key: string, index: number) => {
     if (key === 'Backspace' && otp[index] === '' && index > 0) {
       inputRefs.current[index - 1]?.focus();
@@ -41,9 +45,14 @@ export default function FPVerificationCodeScreen() {
     const code = otp.join('');
     if (code.length === otp.length) {
       console.log('OTP Submitted:', code);
-      // Call your API or verification logic here
     }
   };
+
+  useEffect(() => {
+    if (!otp.includes('')) {
+      navigation.navigate('CreateNewPass')
+    }
+  }, [otp])
 
   return (
     <ScrollView>
@@ -63,8 +72,7 @@ export default function FPVerificationCodeScreen() {
         <View
           style={{
             justifyContent: 'space-evenly',
-            height: screenHeight * 50,
-            // backgroundColor : 'gray'
+            height: screenHeight * 60,
           }}
         >
           <Pressable
@@ -76,6 +84,10 @@ export default function FPVerificationCodeScreen() {
               justifyContent: 'center',
               borderRadius: 50,
               elevation: 2,
+              marginTop: screenHeight * 2
+            }}
+            onPress={() => {
+              navigation.pop()
             }}
           >
             <Icon
@@ -90,34 +102,32 @@ export default function FPVerificationCodeScreen() {
           </Pressable>
 
           <View
-          style = {{
-            height : screenHeight * 30,
-            justifyContent : 'space-around',
-            // backgroundColor : 'green'
-          }}
+            style={{
+              height: screenHeight * 33,
+              justifyContent: 'space-around',
+            }}
           >
             <View
               style={{
                 gap: screenHeight * 2,
                 height: screenHeight * 18,
-                // backgroundColor: 'red',
-                paddingTop: screenHeight * 3,
+                paddingTop: screenHeight * 1,
               }}
             >
               <Text
                 style={{
                   fontFamily: 'RedHatDisplay-Bold',
-                  fontSize: screenWidth * 5,
+                  fontSize: screenWidth * 7,
                 }}
-                >
+              >
                 Verification code
               </Text>
               <Text
                 style={{
                   fontFamily: 'RedHatDisplay-Light',
-                  fontSize: screenWidth * 3.5,
+                  fontSize: screenWidth * 5,
                 }}
-                >
+              >
                 Please enter the verification code we sent to your email address.
               </Text>
             </View>
@@ -126,8 +136,8 @@ export default function FPVerificationCodeScreen() {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent : 'center',
-                gap : screenWidth * 3
+                justifyContent: 'center',
+                gap: screenWidth * 3
               }}
             >
               {otp.map((value, index) => (
@@ -151,40 +161,18 @@ export default function FPVerificationCodeScreen() {
             style={{
               height: screenHeight * 10,
               justifyContent: 'center',
-              // backgroundColor : 'red'
             }}
           >
             <Text
               style={{
                 fontFamily: 'RedHatDisplay-Light',
-                fontSize: screenWidth * 3,
+                fontSize: screenWidth * 3.8,
                 color: '#88898f',
               }}
             >
               Resend in 00:10
             </Text>
           </View>
-
-          {/* <Pressable
-              onPress={handleSubmit}
-              style={{
-                marginTop: screenHeight * 2,
-                backgroundColor: '#1e3354',
-                paddingVertical: screenHeight * 2,
-                paddingHorizontal: screenWidth * 10,
-                borderRadius: 5,
-              }}
-            >
-              <Text
-                style={{
-                  color: 'white',
-                  fontFamily: 'RedHatDisplay-Bold',
-                  fontSize: screenWidth * 4,
-                }}
-              >
-                Verify
-              </Text>
-            </Pressable> */}
         </View>
       </View>
     </ScrollView>
@@ -195,10 +183,12 @@ const styles = StyleSheet.create({
   verificationInpStyle: {
     borderColor: '#a5a7ac',
     borderWidth: 1.5,
-    width: screenWidth * 13,
-    height: screenWidth * 13,
+    width: screenWidth * 17,
+    height: screenWidth * 17,
     borderRadius: 50,
     textAlign: 'center',
     fontSize: screenWidth * 5,
   },
 });
+
+export default FPVerificationCodeScreen
